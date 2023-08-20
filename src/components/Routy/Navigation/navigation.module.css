@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  background-color: #8dc342;
+  justify-content: space-between;
+}
+
+.navlink {
+  text-decoration: none;
+  height: 20px;
+  padding: 5px;
+  /* background-color: #8dc342; */
+  text-decoration: none;
+  margin: 10px 30px 0 0;
+  border: 1px solid black;
+  border-radius: 7px;
+}
+.title {
+  padding: 15px;
+  font-size: 20px;
+}
+
+.flexrow {
+  display: flex;
+  flex-direction: row;
+}

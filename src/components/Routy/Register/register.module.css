@@ -1,0 +1,61 @@
+.form {
+  display: flex;
+  /* align-items: center; */
+  /* justify-content: center; */
+  flex-direction: column;
+  justify-content: center;
+  /* margin-top: 20px; */
+  max-width: 200px;
+  margin: 0 auto;
+}
+.email {
+  margin-left: 20px;
+  background: none;
+  outline: none;
+  color: black;
+  border: none;
+  width: 250px;
+  height: 30px;
+}
+
+.password {
+  margin-left: 20px;
+  background: none;
+  outline: none;
+  color: black;
+  border: none;
+}
+.label {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.labelpass {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.butonregister {
+  margin-top: 40px;
+  margin-left: 60px;
+  outline: none;
+  border: none;
+  background-color: gray;
+  opacity: 0.7;
+  cursor: pointer;
+}
+.butonshow {
+  position: relative;
+  cursor: pointer;
+}
+.div {
+  width: 250px;
+  height: 50px;
+  background-color: grey;
+  margin-top: 30px;
+  opacity: 0.7;
+}
+.p {
+  margin-top: 40px;
+}

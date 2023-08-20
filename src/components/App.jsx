@@ -1,28 +1,60 @@
 import React, { useEffect } from 'react';
-import { ContactForm } from './ContactForm/ContactForm';
-import { Filter } from './Filter/Filter';
-import { ContactList } from './ContactList/ContactList';
 
 import s from './ContactForm/ConatctForm.module.css';
+
+import { Navigate, Route, Routes } from 'react-router-dom';
+import { CommonLayout } from './CommonLayout';
+import { Contacts } from './Contacts';
+import { Login } from './Routy/Login';
+import { Register } from './Routy/Register';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchContacts } from 'redux/actions';
+import { refreshUser } from 'redux/actions';
+
+import { PrivateRoute } from './Routy/PrivateRoute';
+import { PublicRoute } from './Routy/PublicRoute';
 
 const App = () => {
   const dispatch = useDispatch();
-  const isLoading = useSelector(state => state.contacts.isLoading);
-  const error = useSelector(state => state.contacts.error);
+  const isLogged = useSelector(state => state.auth.isLogged);
+  const isRefreshing = useSelector(state => state.auth.isRefreshing);
+
   useEffect(() => {
-    dispatch(fetchContacts());
+    dispatch(refreshUser());
   }, [dispatch]);
 
   return (
-    <div className={s.contener}>
-      <h1 className={s.title}>Phonebook</h1>
-      <ContactForm />
-      <h2 className={s.title}>Contacts</h2>
-      <Filter />
-      {isLoading && !error && <p>Fetch Data, Please Wait...</p>}
-      <ContactList />
+    <div className={isLogged ? s.contenerlogged : s.contener}>
+      {isRefreshing ? (
+        <p>Refreshing... please wait</p>
+      ) : (
+        <Routes>
+          <Route path="/" element={<CommonLayout />}>
+            <Route path="*" element={<Navigate to="login" />} />
+            <Route path="/" element={<Navigate to="login" />} />
+
+            <Route
+              path="/register"
+              element={
+                <PublicRoute redirectTo="/contacts" component={<Register />} />
+              }
+            />
+
+            <Route
+              path="/login"
+              element={
+                <PublicRoute redirectTo="/contacts" component={<Login />} />
+              }
+            />
+
+            <Route
+              path="/contacts"
+              element={
+                <PrivateRoute redirectTo="/login" component={<Contacts />} />
+              }
+            />
+          </Route>
+        </Routes>
+      )}
     </div>
   );
 };

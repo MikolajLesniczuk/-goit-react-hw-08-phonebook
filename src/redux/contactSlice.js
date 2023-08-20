@@ -31,7 +31,8 @@ const contactsSlice = createSlice({
         contact => contact.name === action.payload.name
       );
       if (name) {
-        return Notiflix.Notify.info('This contacts is on phonebook');
+        Notiflix.Notify.info('This contacts is on phonebook');
+        return;
       }
       state.isLoading = false;
       state.error = null;
