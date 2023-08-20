@@ -98,22 +98,6 @@ export const Register = () => {
         </div>
 
         <button className={s.butonregister}>Register</button>
-        {/* <p>------</p>
-        <div>
-          <input
-            type="password"
-            id="passwordInput"
-            name="password"
-            placeholder="Your password"
-          />
-          <button
-            type="button"
-            id="toggleButton"
-            onClick={togglePasswordVisibility}
-          >
-            Show
-          </button>
-        </div> */}
       </form>
     </div>
   );
