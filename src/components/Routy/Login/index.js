@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import s from './login.module.css';
 import { login } from 'redux/actions';
@@ -8,13 +8,23 @@ export const Login = () => {
   const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const emailRef = useRef('');
 
   const handleChange = e => {
-    setEmail(e.target.value);
+    const newEmail = e.target.value;
+    setEmail(newEmail);
+    // console.log('email', email);
+    // console.log('evalju', e.target.value);
+
+    if (newEmail !== emailRef.current) {
+      // console.log('jestsem', EmailRef.current);
+      emailRef.current = newEmail;
+    }
   };
 
   const handlePassword = e => {
     setPassword(e.target.value);
+    // console.log(e.target.value);
   };
 
   const handleSubmit = e => {
@@ -43,11 +53,11 @@ export const Login = () => {
             {' '}
             Email :
             <input
-              autoComplete="off"
+              autoComplete="on"
               className={s.email}
               type="email"
               name="email"
-              // placeholder="Your email"
+              defaultValue={email}
               onChange={handleChange}
             />
           </label>
@@ -56,11 +66,11 @@ export const Login = () => {
           <label className={s.labelpass}>
             Password :
             <input
+              autoComplete="on"
               className={s.password}
               type="password"
               name="password"
               id="passwordInput"
-              // placeholder="Your password"
               onChange={handlePassword}
             />
             <button
